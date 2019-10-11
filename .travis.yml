@@ -1,11 +1,13 @@
 language: php
 php:
   - 7.3
-env:
-  - NOTE_RELEASE=12.x
-before_install:
-  - sudo rm -rf ~/.nvm - curl -sL "https://deb.nodesource.com/setup_${NODE_RELEASE}" | sudo -E bash -
-  - sudo apt-get install -y nodejs
-install:
-  - composer install
-  - npm i
+addons:
+  apt:
+    packages:
+      - libgconf-2-4
+cache:
+  npm: true
+  directories:
+    - ~/.cache
+script:
+  - make test
