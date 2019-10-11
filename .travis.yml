@@ -10,6 +10,7 @@ cache:
   directories:
     - ~/.cache
 before_install:
+  - composer install -o
   - npm i
 script:
   - make test
