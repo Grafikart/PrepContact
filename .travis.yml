@@ -2,6 +2,7 @@ language: php
 php:
   - 7.3
 addons:
+  mariadb: '10.4'
   apt:
     packages:
       - libgconf-2-4
@@ -12,3 +13,5 @@ cache:
     - $HOME/.composer/cache/files
 script:
   - make test
+env:
+  - DATABASE_URL=mysql://root:@127.0.0.1:3306/contact_test
