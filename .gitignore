@@ -1,4 +1,6 @@
+## node & cypress
 node_modules
+cypress/videos
 
 ###> symfony/framework-bundle ###
 /.env.local
