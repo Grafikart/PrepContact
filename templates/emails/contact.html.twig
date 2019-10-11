@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Title</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+        integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+  <p>Vous avez reçu un nouvel email</p>
+  <ul>
+    <li>De: {{ data.email }}</li>
+    <li>Nom: {{ data.name }}</li>
+    <li>Téléphone: {{ data.phone }}</li>
+  </ul>
+
+  <p>
+    Message:<br>
+    {{ data.message | nl2br }}
+  </p>
+</div>
+</body>
+</html>

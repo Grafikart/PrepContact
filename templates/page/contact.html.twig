@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+  <h1>Nous contacter</h1>
+  {% include 'parts/flashes.html.twig' %}
+  {{ form_start(form) }}
+  <div class="row">
+    <div class="col-md-6">{{ form_row(form.name, {label: 'Votre nom'}) }}</div>
+    <div class="col-md-6">{{ form_row(form.email, {label: 'Votre email'}) }}</div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">{{ form_row(form.phone, {label: 'Votre téléphone'}) }}</div>
+  </div>
+  {{ form_row(form.message, {label: 'Votre message'}) }}
+  {{ form_row(form.rgpd, {label: "Dans le cadre de la réglementation sur la protection des données, j'accepte d'être contacté(e) par email et téléphone."}) }}
+  <div class="form-group">
+    <button class="btn btn-primary" type="submit">Envoyer</button>
+  </div>
+  {{ form_end(form) }}
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+
