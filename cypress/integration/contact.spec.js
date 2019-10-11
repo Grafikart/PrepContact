@@ -33,7 +33,7 @@ context('Actions', () => {
     cy.get('input[type="checkbox"][name*="rgpd"]').shouldBeInvalid()
   })
 
-  it.only('should send and email', function () {
+  it('should send and email', function () {
     fillForm(data)
     cy.contains('Votre email a bien été envoyé')
     cy.expectMail('Nom: John Doe')
