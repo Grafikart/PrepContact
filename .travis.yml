@@ -1,4 +1,6 @@
 language: php
+services:
+  - mariadb
 php:
   - 7.3
 addons:
@@ -7,10 +9,13 @@ addons:
     packages:
       - libgconf-2-4
 cache:
+  yarn: true
   npm: true
   directories:
     - ~/.cache
     - $HOME/.composer/cache/files
+install:
+  - make install
 script:
   - make test
 env:

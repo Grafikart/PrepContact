@@ -2,6 +2,9 @@
 help: ## Affiche cette aide
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
+.PHONY: install
+install: node_modules vendor
+
 .PHONY: test
 test: node_modules vendor prepare ## Lance les tests pour l'intégration continue
 	npx cypress run --record --key 3dfc2c25-2c15-4632-8028-9b48561e08b0
