@@ -39,4 +39,15 @@ context('Actions', () => {
     cy.expectMail('Nom: John Doe')
   })
 
+  it.only('should show user in the database', function () {
+    cy.resetDB('auth')
+    fillForm(data)
+    cy.visit('/admin')
+    cy.get('input[name="username"]').type('JohnDoe')
+    cy.get('input[name="password"]').type('0000')
+    cy.contains('button', 'Se connecter').click()
+    cy.contains('Dernières demandes de contact')
+    cy.contains(data.email)
+  })
+
 })

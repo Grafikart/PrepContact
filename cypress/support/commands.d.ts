@@ -8,7 +8,7 @@ declare namespace Cypress {
 
     cleanMail ()
 
-    resetDB ()
+    resetDB (group?: string)
 
     expectMail (text: string)
 

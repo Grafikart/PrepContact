@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Derniers contacts{% endblock %}
+
+{% block body %}
+  <h1>Dernières demandes de contact</h1>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <td>Nom</td>
+      <td>Email</td>
+      <td>Téléphone</td>
+      <td>Message</td>
+      <td>Date</td>
+    </tr>
+    </thead>
+    <tbody>
+    {% for c in contacts %}
+      <tr>
+        <td>{{ c.name }}</td>
+        <td>{{ c.email }}</td>
+        <td>{{ c.phone }}</td>
+        <td>{{ c.message | nl2br }}</td>
+        <td>{{ c.createdAt | date('d/m/Y') }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

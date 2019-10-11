@@ -9,8 +9,6 @@ cache:
   npm: true
   directories:
     - ~/.cache
-before_install:
-  - composer install -o
-  - npm i
+    - $HOME/.composer/cache/files
 script:
   - make test

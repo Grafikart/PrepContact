@@ -41,8 +41,12 @@ Cypress.Commands.add('cleanMail', () => {
   })
 })
 
-Cypress.Commands.add('resetDB', () => {
-  cy.exec('php bin/console doctrine:fixtures:load --no-interaction --env=ui')
+Cypress.Commands.add('resetDB', (group) => {
+  let cmd = 'php bin/console doctrine:fixtures:load --no-interaction --env=ui'
+  if (group) {
+    cmd += ' --group=' + group
+  }
+  cy.exec(cmd)
 })
 
 Cypress.Commands.add('expectMail', (text) => {

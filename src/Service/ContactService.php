@@ -2,6 +2,8 @@
 
 namespace App\Service;
 
+use App\Entity\Contact;
+use Doctrine\ORM\EntityManagerInterface;
 use Twig\Environment;
 
 class ContactService
@@ -15,11 +17,16 @@ class ContactService
      * @var Environment
      */
     private $twig;
+    /**
+     * @var EntityManagerInterface
+     */
+    private $em;
 
-    public function __construct(\Swift_Mailer $mailer, Environment $twig)
+    public function __construct(\Swift_Mailer $mailer, Environment $twig, EntityManagerInterface $em)
     {
         $this->mailer = $mailer;
         $this->twig = $twig;
+        $this->em = $em;
     }
 
     public function handleForm(\App\Data\ContactData $data)
@@ -32,5 +39,7 @@ class ContactService
         if ($sent !== 1) {
             throw new \Exception("SwiftMailer, les emails ne sont pas partis");
         }
+        $this->em->persist(Contact::fromForm($data));
+        $this->em->flush();
     }
 }
