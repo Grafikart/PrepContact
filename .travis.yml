@@ -9,5 +9,7 @@ cache:
   npm: true
   directories:
     - ~/.cache
+before_install:
+  - npm i
 script:
   - make test
