@@ -9,6 +9,7 @@ class ContactData
 
     /**
      * @Assert\NotBlank()
+     * @var string
      */
     public $name;
 
@@ -36,7 +37,7 @@ class ContactData
     /**
      * @Assert\NotBlank()
      * @var string
+     * public $rgpd;
      */
-    public $rgpd;
 
 }

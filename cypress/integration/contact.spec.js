@@ -39,7 +39,7 @@ context('Actions', () => {
     cy.expectMail('Nom: John Doe')
   })
 
-  it.only('should show user in the database', function () {
+  it('should show user in the database', function () {
     cy.resetDB('auth')
     fillForm(data)
     cy.visit('/admin')

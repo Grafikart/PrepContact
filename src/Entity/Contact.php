@@ -2,11 +2,17 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Data\ContactData;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ContactRepository")
+ * @ApiResource(
+ *     input="App\Data\ContactData",
+ *     collectionOperations={"post"={"path"="/contact"}, "get"},
+ *     itemOperations={"get"}
+ * )
  */
 class Contact
 {

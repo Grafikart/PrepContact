@@ -9,14 +9,14 @@
 <div class="container">
   <p>Vous avez reçu un nouvel email</p>
   <ul>
-    <li>De: {{ data.email }}</li>
-    <li>Nom: {{ data.name }}</li>
-    <li>Téléphone: {{ data.phone }}</li>
+    <li>De: {{ contact.email }}</li>
+    <li>Nom: {{ contact.name }}</li>
+    <li>Téléphone: {{ contact.phone }}</li>
   </ul>
 
   <p>
     Message:<br>
-    {{ data.message | nl2br }}
+    {{ contact.message | nl2br }}
   </p>
 </div>
 </body>

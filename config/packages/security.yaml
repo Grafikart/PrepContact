@@ -6,8 +6,7 @@ security:
         class: App\Entity\User
   encoders:
     App\Entity\User:
-      algorithm: bcrypt
-      cost: 12
+      algorithm: auto
   firewalls:
     dev:
       pattern: ^/(_(profiler|wdt)|css|images|js)/

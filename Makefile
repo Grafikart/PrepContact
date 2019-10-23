@@ -7,6 +7,8 @@ install: node_modules vendor
 
 .PHONY: test
 test: node_modules vendor prepare ## Lance les tests pour l'intégration continue
+	php bin/console doctrine:database:create --env=test --if-not-exists
+	./bin/phpunit
 	npx cypress run --record --key 3dfc2c25-2c15-4632-8028-9b48561e08b0
 	make clean
 
@@ -18,7 +20,7 @@ tt: node_modules vendor prepare ## Lance les tests individuellement
 .PHONY: prepare
 prepare:
 	npx forever start ./node_modules/.bin/maildev
-	php bin/console doctrine:database:create  --env=ui
+	php bin/console doctrine:database:create  --env=ui --if-not-exists
 	php bin/console doctrine:schema:create --env=ui
 	php bin/console server:start 127.0.0.1:8888 --env=ui
 
