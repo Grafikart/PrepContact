@@ -5,8 +5,13 @@ help: ## Affiche cette aide
 .PHONY: install
 install: node_modules vendor
 
+.PHONY: lint
+lint:
+	./vendor/bin/phpstan analyse src -l 6 -c phpstan.neon
+	./vendor/bin/phpstan analyse tests -l 4 -c phpstan.neon
+
 .PHONY: test
-test: node_modules vendor prepare ## Lance les tests pour l'intégration continue
+test: lint node_modules vendor prepare ## Lance les tests pour l'intégration continue
 	php bin/console doctrine:database:create --env=test --if-not-exists
 	./bin/phpunit
 	npx cypress run --record --key 3dfc2c25-2c15-4632-8028-9b48561e08b0

@@ -4,6 +4,7 @@ namespace App\Tests\Api;
 
 use ApiPlatform\Core\Bridge\Symfony\Bundle\Test\ApiTestCase;
 use App\Tests\DatabaseTrait;
+use Symfony\Bundle\SwiftmailerBundle\DataCollector\MessageDataCollector;
 
 
 class ContactTest extends ApiTestCase
@@ -48,7 +49,9 @@ class ContactTest extends ApiTestCase
         ]);
         $this->assertResponseIsSuccessful();
         $this->assertJsonContains($this->getData());
-        $this->assertCount(1, $client->getProfile()->getCollector('swiftmailer')->getMessages());
+        /** @var MessageDataCollector $collector */
+        $collector = $client->getProfile()->getCollector('swiftmailer');
+        $this->assertCount(1, $collector->getMessages());
     }
 
 }

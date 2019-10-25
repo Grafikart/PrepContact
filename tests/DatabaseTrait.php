@@ -6,6 +6,7 @@ use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
 use Doctrine\Common\DataFixtures\Loader;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Doctrine\ORM\Tools\SchemaTool;
+use Doctrine\ORM\Tools\ToolsException;
 use LogicException;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
@@ -59,10 +60,7 @@ trait DatabaseTrait
 
     protected static function ensureKernelShutdown()
     {
-        $container = static::$container ?? null;
-        if (null === $container && null !== static::$kernel) {
-            $container = static::$kernel->getContainer();
-        }
+        $container = static::$container ?? static::$kernel->getContainer();
         if (null !== $container) {
             $connection = $container->get('doctrine')->getConnection(static::$connection);
             if ($connection->isTransactionActive()) {
