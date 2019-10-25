@@ -11,7 +11,7 @@ lint:
 	./vendor/bin/phpstan analyse tests -l 4 -c phpstan.neon
 
 .PHONY: test
-test: lint node_modules vendor prepare ## Lance les tests pour l'intégration continue
+test: public/build lint node_modules vendor prepare ## Lance les tests pour l'intégration continue
 	php bin/console doctrine:database:create --env=test --if-not-exists
 	./bin/phpunit
 	npx cypress run --record --key 3dfc2c25-2c15-4632-8028-9b48561e08b0
@@ -26,7 +26,7 @@ tt: node_modules vendor prepare ## Lance les tests individuellement
 prepare:
 	npx forever start ./node_modules/.bin/maildev
 	php bin/console doctrine:database:create  --env=ui --if-not-exists
-	php bin/console doctrine:schema:update --env=ui
+	php bin/console doctrine:schema:update --force --env=ui
 	php bin/console server:start 127.0.0.1:8888 --env=ui
 
 .PHONY: clean
@@ -40,3 +40,6 @@ node_modules: package.json
 
 vendor: composer.json
 	composer install -o
+
+public/build:
+	npm run build
