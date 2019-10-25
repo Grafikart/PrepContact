@@ -60,7 +60,10 @@ trait DatabaseTrait
 
     protected static function ensureKernelShutdown()
     {
-        $container = static::$container ?? static::$kernel->getContainer();
+        $container = static::$container ?? null;
+        if (null === $container && null !== static::$kernel) {
+            $container = static::$kernel->getContainer();
+        }
         if (null !== $container) {
             $connection = $container->get('doctrine')->getConnection(static::$connection);
             if ($connection->isTransactionActive()) {

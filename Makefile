@@ -8,7 +8,7 @@ install: node_modules vendor
 .PHONY: lint
 lint:
 	./vendor/bin/phpstan analyse src -l 6 -c phpstan.neon
-	./vendor/bin/phpstan analyse tests -l 4 -c phpstan.neon
+	./vendor/bin/phpstan analyse tests -l 3 -c phpstan.neon
 
 .PHONY: test
 test: public/build lint node_modules vendor prepare ## Lance les tests pour l'intégration continue
