@@ -28,7 +28,6 @@ Cypress.Commands.add('label', (text) => {
   return cy.contains('label', text).click().focused({log: false})
 })
 
-
 Cypress.Commands.add('shouldBeInvalid', {prevSubject: 'element'}, (subject, options) => {
   const input = subject[0]
   const message = 'Le champs #' + input.getAttribute('id') + ' doit être invalide'

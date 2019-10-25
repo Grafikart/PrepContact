@@ -34,6 +34,7 @@ context('Actions', () => {
   })
 
   it('should send and email', function () {
+    cy.cleanMail()
     fillForm(data)
     cy.contains('Votre email a bien été envoyé')
     cy.expectMail('Nom: John Doe')

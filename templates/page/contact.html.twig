@@ -2,7 +2,7 @@
 
 {% block body %}
   <h1>Nous contacter</h1>
-  <contact-form></contact-form>
+  <contact-form url="{{ path('api_contacts_post_collection') }}"></contact-form>
 {% endblock %}
 
 {% block title %}
